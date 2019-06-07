@@ -1,12 +1,14 @@
 import React from 'react';
 import './App.css';
-import {BG} from "./components/pageRoot";
+import {BG, Centered} from "./components/common/pageRoot";
 import {Render} from "./components/render";
 
 function App() {
     return (
         <BG>
-            <Render view='splash'/>
+            <Centered>
+                <Render view="splash"/>
+            </Centered>
         </BG>
     );
 }

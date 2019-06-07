@@ -1,6 +1,6 @@
-import {Centered} from "./pageRoot";
-import {NavButton} from "./buttons";
+import {NavButton} from "./common/buttons";
 import React from "react";
+import {Board} from "./board/board";
 
 export class Render extends React.Component {
     constructor(props) {
@@ -10,23 +10,22 @@ export class Render extends React.Component {
     }
 
     routeLobby() {
-        console.log('called')
+        console.log('called');
         this.setState({
             view: 'lobby'
         });
     }
 
     render() {
-        console.log(this.state.view)
+        console.log(this.state.view);
         if (this.state.view === 'splash') {
             return (
-                <Centered>
-                    <NavButton onClick={this.routeLobby}> Play! </NavButton>
-                </Centered>
+                <NavButton onClick={this.routeLobby}> Play! </NavButton>
             );
 
         } else {
-            return (<Centered><NavButton>THIS IS THE LOBBY!</NavButton></Centered>);
+            return (<Board url="wss://u0saflhbt3.execute-api.us-east-1.amazonaws.com/test" boardId="testId"
+                           name={"user"}/>);
         }
     }
-};
+}
