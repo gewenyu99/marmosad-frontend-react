@@ -1,12 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {Button} from "./components/buttons";
+import {BG} from "./components/pageRoot";
+import {Render} from "./components/render";
 
 function App() {
-  return (
-    <Button>Hello World</Button>
-  );
+    return (
+        <BG>
+            <Render view='splash'/>
+        </BG>
+    );
 }
+
 
 export default App;
