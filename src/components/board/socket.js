@@ -7,7 +7,9 @@ export class Socket {
         return this.ws;
     }
 
-    join(boardId, name) {
-        this.ws.send(JSON.stringify({action: 'join', 'boardId': boardId, 'name': name}));
+    leave() {
+        console.log('leaving');
+        this.ws.send(JSON.stringify({"action": "leave"}));
+        this.ws.close();
     }
 }
