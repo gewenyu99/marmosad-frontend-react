@@ -1,8 +1,10 @@
 import {NavButton} from "./common/buttons";
 import React from "react";
-import {Board} from "./board/board";
-import {Centered} from "./common/pageRoot";
 import {Wrapper} from "./common/nav";
+import {RenderTarget} from "./renderTarget";
+import {Card} from "./common/card";
+import {BG} from "./common/pageRoot";
+import {GlobalStyle} from "./common/globalStyle";
 
 
 export class Render extends React.Component {
@@ -31,27 +33,18 @@ export class Render extends React.Component {
 
     render() {
         return (
-            <Centered>
+            <BG>
                 <Wrapper>
                     <NavButton onClick={this.routeSplash}> Back </NavButton>
                 </Wrapper>
-                <RenderTarget view={this.state.view} routeLobby={this.routeLobby}/>
-            </Centered>
+                <Card>
+                    <RenderTarget view={this.state.view} routeLobby={this.routeLobby}/>
+                </Card>
+            </BG>
         );
     }
 }
 
-function RenderTarget(props) {
-    if (props.view === 'splash') {
-        return (
-            <NavButton onClick={props.routeLobby}> Play! </NavButton>
-        );
 
-    } else {
-        return (
-            <Board url="wss://u0saflhbt3.execute-api.us-east-1.amazonaws.com/test" boardId="testId"
-                   name="user"/>);
-    }
-}
 
 

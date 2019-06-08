@@ -3,33 +3,28 @@ import styled from 'styled-components'
 export const BG = styled.div`
     background: transparent;
     color: white;
-    margin: 0.5em 1em;
-    padding: 0.25em 1em;
-    background: white;
     display: flex;
-    align-items: center;
-    min-height: 24em;
-    justify-content: center;
-    
+    align-items: stretch;
+    justify-content: stretch;
+    flex-direction: column;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    overflow: auto;
+    overflow: hidden;
 `
 
 
-export const Centered = styled.div`
+export const Centered = styled.main`
     background: transparent;
     color: white;
-    margin: 0.5em 1em;
-    padding: 0.25em 1em;
-    background: white;
+    min-width: 100%;
+    overflow: hidden;
+    
     display: flex;
-    align-items: center;
-    min-height: 24em;
-    justify-content: center;
     flex: 1;
-    border: 5px solid red;
+    justify-content: center;
+    align-items: center;
+
  `

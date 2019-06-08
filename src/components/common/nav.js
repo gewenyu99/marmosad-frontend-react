@@ -1,15 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.nav`
-  position: fixed;
-  top: 0
-  left: 0;
-  box-sizing: border-box;
-  z-index: 3;
-  width: 100%;
-  font-weight: 500;
-  background: violetRed;
-  transition: background 300ms ease-out;
-  color: black;
-  padding: 0;
+    min-height: 40px;
+    max-height: 80px;
+    
+    width: 100%;
+    box-shadow: rgba(75, 86, 99, 0.094) 0px 8px 16px;
+    background: rgb(255, 255, 255);
+    flex: 1;
 `;
