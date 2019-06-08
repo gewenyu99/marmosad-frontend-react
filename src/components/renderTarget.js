@@ -1,11 +1,14 @@
 import {NavButton} from "./common/buttons";
 import {Board} from "./board/board";
 import React from "react";
+import {JoinCard} from "./common/card";
 
 export function RenderTarget(props) {
     if (props.view === 'splash') {
         return (
-            <NavButton onClick={props.routeLobby}> Play! </NavButton>
+            <JoinCard>
+                <NavButton onClick={props.routeLobby}> Play! </NavButton>
+            </JoinCard>
         );
 
     } else {

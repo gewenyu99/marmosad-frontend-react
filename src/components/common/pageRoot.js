@@ -17,14 +17,12 @@ export const BG = styled.div`
 
 
 export const Centered = styled.main`
-    background: transparent;
-    color: white;
-    min-width: 100%;
     overflow: hidden;
-    
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid #e9294f;
+   
     display: flex;
-    flex: 1;
-    justify-content: center;
     align-items: center;
-
+    justify-content: center;
  `

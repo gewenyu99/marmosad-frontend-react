@@ -1,10 +1,12 @@
-import {NavButton} from "./common/buttons";
 import React from "react";
-import {Wrapper} from "./common/nav";
+import {NavBar} from "./common/nav/nav";
 import {RenderTarget} from "./renderTarget";
-import {Card} from "./common/card";
-import {BG} from "./common/pageRoot";
-import {GlobalStyle} from "./common/globalStyle";
+import {BG, Centered} from "./common/pageRoot";
+import goose from "../asset/goose.svg"
+import {NavIcon} from "./common/nav/navIcon";
+import {NavTag} from "./common/nav/navTag";
+import {NavText} from "./common/nav/navTexxt";
+import {NavButton} from "./common/buttons";
 
 
 export class Render extends React.Component {
@@ -12,6 +14,7 @@ export class Render extends React.Component {
         super(props);
         this.routeLobby = this.routeLobby.bind(this);
         this.routeSplash = this.routeSplash.bind(this);
+        this.ifDisplayBack = this.ifDisplayBack.bind(this);
         this.state = {view: this.props.view}
     }
 
@@ -30,16 +33,25 @@ export class Render extends React.Component {
         });
     }
 
+    ifDisplayBack(v) {
+        if(v !== 'splash') {
+            return <NavButton onClick={this.routeSplash}> Back </NavButton>
+        }
+    }
+
 
     render() {
         return (
             <BG>
-                <Wrapper>
-                    <NavButton onClick={this.routeSplash}> Back </NavButton>
-                </Wrapper>
-                <Card>
+                <NavBar class="navBar">
+                    <NavTag>
+                        <NavText>Marmosad</NavText><NavIcon src={goose} class="goose-icon" alt="goose-img"/>
+                    </NavTag>
+                    {this.ifDisplayBack(this.state.view)}
+                </NavBar>
+                <Centered>
                     <RenderTarget view={this.state.view} routeLobby={this.routeLobby}/>
-                </Card>
+                </Centered>
             </BG>
         );
     }
