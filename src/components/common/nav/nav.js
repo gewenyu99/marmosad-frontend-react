@@ -4,7 +4,7 @@ export const NavBar = styled.nav`
     min-height: 40px;
     max-height: 80px;
     
-    padding: 0 10px 0 10px;
+    padding: 5px 10px 5px 10px;
     
     width: 100%;
     box-shadow: rgba(75, 86, 99, 0.094) 0px 8px 16px;

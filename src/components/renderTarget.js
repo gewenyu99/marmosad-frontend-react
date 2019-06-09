@@ -1,14 +1,11 @@
-import {NavButton} from "./common/buttons";
 import {Board} from "./board/board";
 import React from "react";
-import {JoinCard} from "./common/card";
+import {MarmoTabs} from "./common/marmoTabs";
 
 export function RenderTarget(props) {
-    if (props.view === 'splash') {
+    if (props.view === 'lobby') {
         return (
-            <JoinCard>
-                <NavButton onClick={props.routeLobby}> Play! </NavButton>
-            </JoinCard>
+            <MarmoTabs playButton={props.routeBoard}/>
         );
 
     } else {

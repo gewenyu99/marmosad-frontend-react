@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import img from '../../asset/background.svg'
 
 export const BG = styled.div`
-    background: transparent;
+    background: url(${img});
     color: white;
     display: flex;
-    align-items: stretch;
-    justify-content: stretch;
+    align-items: center;
+    justify-content: space-between;
     flex-direction: column;
     position: fixed;
     top: 0;
@@ -20,8 +21,7 @@ export const Centered = styled.main`
     overflow: hidden;
     padding: 10px;
     margin: 10px;
-    border: 2px solid #e9294f;
-   
+    flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;

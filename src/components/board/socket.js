@@ -9,7 +9,12 @@ export class Socket {
 
     leave() {
         console.log('leaving');
-        this.ws.send(JSON.stringify({"action": "leave"}));
+        try {
+            this.ws.send(JSON.stringify({"action": "leave"}));
+
+        } catch (e) {
+            console.log(e)
+        }
         this.ws.close();
     }
 }

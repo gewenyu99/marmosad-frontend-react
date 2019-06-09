@@ -8,7 +8,7 @@ function App() {
     return (
         <BG>
             <GlobalStyle heading/>
-            <Render view="splash"/>
+            <Render view="lobby"/>
         </BG>
     );
 }

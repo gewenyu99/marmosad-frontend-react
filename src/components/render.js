@@ -14,6 +14,7 @@ export class Render extends React.Component {
         super(props);
         this.routeLobby = this.routeLobby.bind(this);
         this.routeSplash = this.routeSplash.bind(this);
+        this.routeBoard = this.routeBoard.bind(this);
         this.ifDisplayBack = this.ifDisplayBack.bind(this);
         this.state = {view: this.props.view}
     }
@@ -26,6 +27,14 @@ export class Render extends React.Component {
         });
     }
 
+    routeBoard() {
+        console.log('rendering board');
+
+        this.setState({
+            view: 'board'
+        });
+    }
+
     routeSplash() {
         console.log('rendering splash');
         this.setState({
@@ -33,10 +42,11 @@ export class Render extends React.Component {
         });
     }
 
-    ifDisplayBack(v) {
-        if(v !== 'splash') {
-            return <NavButton onClick={this.routeSplash}> Back </NavButton>
-        }
+    ifDisplayBack() {
+        if (this.state.view !== 'lobby')
+            return {visibility: 'visible'}
+        else
+            return {visibility: 'hidden'};
     }
 
 
@@ -44,13 +54,14 @@ export class Render extends React.Component {
         return (
             <BG>
                 <NavBar class="navBar">
+                    <NavButton  style={{visibility: 'hidden'}}>hoho</NavButton>
                     <NavTag>
-                        <NavText>Marmosad</NavText><NavIcon src={goose} class="goose-icon" alt="goose-img"/>
+                        <NavText>Marmosad</NavText><NavIcon src={goose} className="goose-icon" alt="goose-img"/>
                     </NavTag>
-                    {this.ifDisplayBack(this.state.view)}
+                    <NavButton onClick={this.routeLobby} style={this.ifDisplayBack()}> Back </NavButton>
                 </NavBar>
                 <Centered>
-                    <RenderTarget view={this.state.view} routeLobby={this.routeLobby}/>
+                    <RenderTarget view={this.state.view} routeBoard={this.routeBoard}/>
                 </Centered>
             </BG>
         );
