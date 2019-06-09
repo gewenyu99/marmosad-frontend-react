@@ -16,7 +16,7 @@ export class Render extends React.Component {
         this.routeSplash = this.routeSplash.bind(this);
         this.routeBoard = this.routeBoard.bind(this);
         this.ifDisplayBack = this.ifDisplayBack.bind(this);
-        this.state = {view: this.props.view}
+        this.state = {view: this.props.view, boardId: "", name: ""}
     }
 
     routeLobby() {
@@ -27,11 +27,12 @@ export class Render extends React.Component {
         });
     }
 
-    routeBoard() {
+    routeBoard(boardId, name) {
         console.log('rendering board');
 
         this.setState({
-            view: 'board'
+            view: 'board',
+            boardId: boardId, name: name
         });
     }
 
@@ -44,7 +45,7 @@ export class Render extends React.Component {
 
     ifDisplayBack() {
         if (this.state.view !== 'lobby')
-            return {visibility: 'visible'}
+            return {visibility: 'visible'};
         else
             return {visibility: 'hidden'};
     }
@@ -54,14 +55,15 @@ export class Render extends React.Component {
         return (
             <BG>
                 <NavBar class="navBar">
-                    <NavButton  style={{visibility: 'hidden'}}>hoho</NavButton>
+                    <NavButton style={{visibility: 'hidden'}}>hoho</NavButton>
                     <NavTag>
                         <NavText>Marmosad</NavText><NavIcon src={goose} className="goose-icon" alt="goose-img"/>
                     </NavTag>
                     <NavButton onClick={this.routeLobby} style={this.ifDisplayBack()}> Back </NavButton>
                 </NavBar>
                 <Centered>
-                    <RenderTarget view={this.state.view} routeBoard={this.routeBoard}/>
+                    <RenderTarget view={this.state.view} routeBoard={this.routeBoard} name={this.state.name}
+                                  boardId={this.state.boardId}/>
                 </Centered>
             </BG>
         );
