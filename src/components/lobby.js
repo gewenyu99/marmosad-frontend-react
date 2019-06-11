@@ -2,7 +2,7 @@ import React from 'react';
 import {LobbyCard} from "./common/card";
 import {Input} from "./common/input";
 import {FormButton} from "./common/buttons";
-import {Header, TabBody, TabHead, TabHeadContainer} from "./tabs";
+import {Header, TabBody, TabHead, TabHeadContainer, Tabs} from "./tabs";
 import rp from "request-promise-native";
 // @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 // font-family: 'Open Sans', sans-serif;  font-size: 12px;
@@ -87,18 +87,23 @@ export class Lobby extends React.Component {
     render() {
         return (
             <LobbyCard>
-                <Header>Lobby</Header>
-                <TabHeadContainer>
-                    <TabHead selected={(this.state.tab === 'join')} tab='join'
-                             onClick={(e) => {
-                                 this.select('join', e)
-                             }}>Join</TabHead>
-                    <TabHead selected={(this.state.tab === 'create')} tab='create'
-                             onClick={(e) => {
-                                 this.select('create', e)
-                             }}>Create</TabHead>
-                </TabHeadContainer>
-                <TabBody tabs={this.tabs()} selector={(this.state.tab)}/>
+                {/*<Header>Lobby</Header>*/}
+                {/*<TabHeadContainer>*/}
+                {/*    <TabHead selected={(this.state.tab === 'join')} tab='join'*/}
+                {/*             onClick={(e) => {*/}
+                {/*                 this.select('join', e)*/}
+                {/*             }}>Join</TabHead>*/}
+                {/*    <TabHead selected={(this.state.tab === 'create')} tab='create'*/}
+                {/*             onClick={(e) => {*/}
+                {/*                 this.select('create', e)*/}
+                {/*             }}>Create</TabHead>*/}
+                {/*</TabHeadContainer>*/}
+                {/*<TabBody tabs={this.tabs()} selector={(this.state.tab)}/>*/}
+
+                <Tabs headerText = "nice one bob" tabs={['un', 'deux']}>
+                    <h1>1</h1>
+                    <h1>2</h1>
+                </Tabs>
 
             </LobbyCard>
         )

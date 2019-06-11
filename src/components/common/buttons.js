@@ -17,7 +17,7 @@ export const NavButton = styled(Button)`
     font-size: 20px;
     background: #ff5b5b;
     color: #3b3e47;
-`
+`;
 export const FormButton = styled(Button)`
       padding: 10px;
       margin: 10px;
@@ -27,5 +27,5 @@ export const FormButton = styled(Button)`
       background: #ff5b5b;
       color: white;
       max-width: 100px;
-`
+`;
 

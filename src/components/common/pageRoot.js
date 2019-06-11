@@ -14,7 +14,7 @@ export const BG = styled.div`
     bottom: 0;
     right: 0;
     overflow: hidden;
-`
+`;
 
 
 export const Centered = styled.main`
@@ -25,4 +25,4 @@ export const Centered = styled.main`
     display: flex;
     align-items: center;
     justify-content: center;
- `
+ `;

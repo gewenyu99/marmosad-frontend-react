@@ -8,4 +8,4 @@ export const NavTag = styled.div`
   flex-direction: row;
   justify-content: start;
   align-items: center;
-`
+`;

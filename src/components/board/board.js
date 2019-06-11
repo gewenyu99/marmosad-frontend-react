@@ -51,7 +51,7 @@ export const ChatScoreDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-`
+`;
 export const SpacerDiv = styled.div`
     max-width: 40px;
     min-width: 20px;
@@ -59,4 +59,4 @@ export const SpacerDiv = styled.div`
     min-height: 20px;
     background: transparent;
     flex: 1; 
-`
+`;

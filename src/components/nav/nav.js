@@ -33,8 +33,7 @@ export const Nav = () => {
             </NavTag>
             <NavButton onClick={() => {
                 setView('lobby')
-            }}
-           show={currentView !== 'lobby'}> Back </NavButton>
+            }} show={currentView !== 'lobby'}> Back </NavButton>
         </NavBar>
     )
 };
