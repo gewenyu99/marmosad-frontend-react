@@ -1,5 +1,5 @@
 import React from 'react';
-import {JoinCard} from "./common/card";
+import {LobbyCard} from "./common/card";
 import {Input} from "./common/input";
 import {FormButton} from "./common/buttons";
 import {Header, TabBody, TabHead, TabHeadContainer} from "./tabs";
@@ -86,7 +86,7 @@ export class Lobby extends React.Component {
 
     render() {
         return (
-            <JoinCard>
+            <LobbyCard>
                 <Header>Lobby</Header>
                 <TabHeadContainer>
                     <TabHead selected={(this.state.tab === 'join')} tab='join'
@@ -100,7 +100,7 @@ export class Lobby extends React.Component {
                 </TabHeadContainer>
                 <TabBody tabs={this.tabs()} selector={(this.state.tab)}/>
 
-            </JoinCard>
+            </LobbyCard>
         )
     }
 }

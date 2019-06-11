@@ -5,8 +5,8 @@ export const BG = styled.div`
     background: url(${img});
     color: white;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: stretch;
+    justify-content: stretch;
     flex-direction: column;
     position: fixed;
     top: 0;
