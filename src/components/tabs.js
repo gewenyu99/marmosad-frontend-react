@@ -50,15 +50,18 @@ export const TabBody = styled.div`
 
 export function Tabs(props) {
     const children = props.children;
+    const [selectedTab, setSelectedTab] = React.useState(0);
     return (
         <Fragment>
             <Header>{props.headerText}</Header>
-                <TabHeadContainer>
-                    {props.tabs.map(tab => <TabHead selected={(true)}> {tab} </TabHead>)}
-                </TabHeadContainer>
-                <TabBody>
-                    {children[1]}
-                </TabBody>
+            <TabHeadContainer>
+                {props.tabs.map((tab, i) => <TabHead selected={i === selectedTab} id={tab} onClick={()=>{
+                    setSelectedTab(i)
+                }}> {tab} </TabHead>)}
+            </TabHeadContainer>
+            <TabBody>
+                {children[selectedTab]}
+            </TabBody>
         </Fragment>
     )
 };
