@@ -1,12 +1,6 @@
 import React from "react";
-import {NavBar} from "./common/nav/nav";
 import {RenderTarget} from "./renderTarget";
 import {BG, Centered} from "./common/pageRoot";
-import goose from "../asset/goose.svg"
-import {NavIcon} from "./common/nav/navIcon";
-import {NavTag} from "./common/nav/navTag";
-import {NavText} from "./common/nav/navTexxt";
-import {NavButton} from "./common/buttons";
 
 
 export class Render extends React.Component {
@@ -54,13 +48,7 @@ export class Render extends React.Component {
     render() {
         return (
             <BG>
-                <NavBar class="navBar">
-                    <NavButton style={{visibility: 'hidden'}}>hoho</NavButton>
-                    <NavTag>
-                        <NavText>Marmosad</NavText><NavIcon src={goose} className="goose-icon" alt="goose-img"/>
-                    </NavTag>
-                    <NavButton onClick={this.routeLobby} style={this.ifDisplayBack()}> Back </NavButton>
-                </NavBar>
+
                 <Centered>
                     <RenderTarget view={this.state.view} routeBoard={this.routeBoard} name={this.state.name}
                                   boardId={this.state.boardId}/>
