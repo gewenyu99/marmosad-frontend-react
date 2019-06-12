@@ -51,6 +51,7 @@ export const TabBody = styled.div`
 export function Tabs(props) {
     const children = props.children;
     const [selectedTab, setSelectedTab] = React.useState(0);
+    console.log(children);
     return (
         <Fragment>
             <Header>{props.headerText}</Header>

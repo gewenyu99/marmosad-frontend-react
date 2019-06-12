@@ -3,44 +3,31 @@ import {Socket} from "./socket";
 import {BoardCard, ChatCard, PlayAreaCard, ScoreCard} from "../common/card";
 import styled from "styled-components";
 
-export class Board extends React.Component {
-    constructor(props) {
-        super(props);
-        let socket = new Socket(this.props.url, this.props.boardId, this.props.name);
-        this.state = {
-            socket: socket,
-            connection: socket.connection()
-        };
-    }
+export function Board(props) {
+    let socket = new Socket(this.props.url, this.props.boardId, this.props.name);
+    let connection = socket.connection();
 
-    componentDidMount() {
+    React.useEffect(()=>{
         window.addEventListener('beforeunload', () => {
             this.state.socket.leave();
         });
-    }
+    });
 
-    componentWillUnmount() {
-        console.log('huehue');
-        this.state.socket.leave();
-    }
+    return (
+        <BoardCard>
+            <ChatScoreDiv>
+                <ScoreCard>
 
-    render() {
-        return (
-            <BoardCard>
-                <ChatScoreDiv>
-                    <ScoreCard>
-
-                    </ScoreCard>
-                    <SpacerDiv/>
-                    <ChatCard>
-
-                    </ChatCard>
-                </ChatScoreDiv>
+                </ScoreCard>
                 <SpacerDiv/>
-                <PlayAreaCard/>
-            </BoardCard>
-        )
-    }
+                <ChatCard>
+
+                </ChatCard>
+            </ChatScoreDiv>
+            <SpacerDiv/>
+            <PlayAreaCard/>
+        </BoardCard>
+    )
 }
 
 

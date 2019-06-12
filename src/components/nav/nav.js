@@ -3,7 +3,7 @@ import React from "react";
 import {NavButton} from "../common/buttons";
 import {NavTag} from "./navTag";
 import {NavText} from "./navTexxt";
-import {useViewsProvider} from "../viewRoute/ViewsContext";
+import {useView} from "../common/viewRoute/ViewHook";
 import goose from '../../asset/goose.svg'
 import {NavIcon} from "./navIcon";
 
@@ -25,15 +25,21 @@ export const NavBar = styled.nav`
 
 
 export const Nav = () => {
-    const [, setView, currentView] = useViewsProvider();
+    const [curView, setView] = useView();
+    console.log('curview: ', curView);
     return (
         <NavBar class="navBar">
             <NavTag>
-                <NavText>Marmosad</NavText><NavIcon src={goose} className="goose-icon" alt="goose-img"/>
+                <NavText>Marmosad</NavText> <NavIcon src={goose} className="goose-icon" alt="goose-img"/>
             </NavTag>
             <NavButton onClick={() => {
                 setView('lobby')
-            }} show={currentView !== 'lobby'}> Back </NavButton>
+            }} show={() => {
+                if (curView) {
+                    console.log('curview: ', curView);
+                    return curView !== 'lobby'
+                } else return false
+            }}> Back </NavButton>
         </NavBar>
     )
 };

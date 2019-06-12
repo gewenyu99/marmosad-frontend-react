@@ -14,7 +14,6 @@ export class Socket {
         console.log('leaving');
         try {
             this.ws.send(JSON.stringify({"action": "leave"}));
-
         } catch (e) {
             console.log(e)
         }
