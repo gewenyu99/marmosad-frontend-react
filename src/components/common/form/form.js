@@ -15,7 +15,7 @@ export function Form(props) {
             return input.props.type === 'number' ? parseInt(input.props.name) : input.props.name
         }));
 
-    }, [props.className]);
+    }, [props.className, props.children]);
 
 
     function handleChange(e, i) {
@@ -56,50 +56,3 @@ const FormDiv = styled.div`
     display: flex;
     flex-direction: column;                 
 `;
-
-//
-// tabs() {
-//         return {
-//             'join': (
-//                 <React.Fragment>
-//                     <Input type="text" placeholder="Invitation Code" maxlength='36'
-//                            value={this.state.joinForm.boardId}
-//                            onChange={(e) => {
-//                                this.handleChange(e, 'joinForm', 'boardId')
-//                            }}/>
-//                     <Input type="text" placeholder="Your Name" maxlength='14' value={this.state.joinForm.name}
-//                            onChange={(e) => {
-//                                this.handleChange(e, 'joinForm', 'name')
-//                            }}/>
-//                     <FormButton onClick={() => {
-//                         this.props.routeBoard(this.state.joinForm.boardId, this.state.joinForm.name)
-//                     }}>Join</FormButton>
-//                 </React.Fragment>
-//             ),
-//             'create': (
-//                 <React.Fragment>
-//                     <Input type="text" placeholder="Board Name" maxlength='30' value={this.state.createForm.boardName}
-//                            onChange={(e) => {
-//                                this.handleChange(e, 'createForm', 'boardName')
-//                            }}/>
-//                     <Input type="number" placeholder="Party Size" max='6' min='3'
-//                            value={this.state.createForm.playerLimit}
-//                            onChange={(e) => {
-//                                this.handleChange(e, 'createForm', 'playerLimit')
-//                            }}/>
-//                     <Input type="text" placeholder="Your Name" max='6' min='3'
-//                            value={this.state.createForm.name}
-//                            onChange={(e) => {
-//                                this.handleChange(e, 'createForm', 'name')
-//                            }}/>
-//                     <FormButton onClick={async () => {
-//                         const board = await createBoard({
-//                             "name": this.state.createForm.boardName,
-//                             "playerLimit": this.state.createForm.playerLimit
-//                         });
-//                         this.props.routeBoard(board['body']['boardId'], this.state.createForm.name);
-//                     }}>Create</FormButton>
-//                 </React.Fragment>
-//             )
-//         }
-//     };

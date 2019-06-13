@@ -57,7 +57,7 @@ export function Tabs(props) {
         <Fragment>
             <Header>{props.headerText}</Header>
             <TabHeadContainer>
-                {props.tabs.map((tab, i) => <TabHead selected={i === selectedTab} key={tab} onClick={()=>{
+                {props.tabs.map((tab, i) => <TabHead selected={i === selectedTab} key={tab} onClick={() => {
                     setSelectedTab(i)
                 }}> {tab} </TabHead>)}
             </TabHeadContainer>
@@ -66,4 +66,4 @@ export function Tabs(props) {
             </TabBody>
         </Fragment>
     )
-};
+}

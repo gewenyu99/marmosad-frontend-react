@@ -25,18 +25,16 @@ export const NavBar = styled.nav`
 `;
 
 
-export const Nav = () => {
-    const defaultView = React.useContext(DefaultViewContext);
+export const Nav = (props) => {
 
-    const [curView, setView] = useView(defaultView);
     return (
         <NavBar className="navBar">
             <NavTag>
                 <NavText>Marmosad</NavText> <NavIcon src={goose} className="goose-icon" alt="goose-img"/>
             </NavTag>
             <NavButton onClick={() => {
-                setView('lobby')
-            }} show={curView !== 'lobby'}> Back </NavButton>
+                props.setView('lobby')
+            }} show={props.curView !== 'lobby'}> Back </NavButton>
         </NavBar>
     )
 };

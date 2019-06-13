@@ -4,17 +4,18 @@ import {BoardCard, ChatCard, PlayAreaCard, ScoreCard} from "../common/card";
 import styled from "styled-components";
 
 export function Board(props) {
-    let socket = new Socket(this.props.url, props.boardId, props.name);
+    console.log(props.url, props.boardId, props.name);
+    let socket = new Socket(props.url, props.boardId, props.name);
     let connection = socket.connection();
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         window.addEventListener('beforeunload', () => {
             this.state.socket.leave();
         });
     });
 
-    React.useEffect(()=>{
-        connection.addEventListener('on', ()=>{
+    React.useEffect(() => {
+        connection.addEventListener('on', () => {
             this.ws.send(JSON.stringify({'action': 'join', 'boardId': props.boardId, 'name': props.name}));
         })
     });
