@@ -2,10 +2,11 @@ import styled from "styled-components";
 import React, {Fragment} from "react";
 
 export const Header = styled.header`
-  padding: 5px;
+  padding: 10px;
   color: #ff5b5b;
   background: #3b3e47;
   font-size: 20px;
+  font-weight: bolder;
   text-align: center;
   flex: 1;
   max-height: 30px;

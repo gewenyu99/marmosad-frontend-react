@@ -19,8 +19,6 @@ export const BG = styled.div`
 
 export const Centered = styled.main`
     overflow: hidden;
-    padding: 10px;
-    margin: 10px;
     flex-grow: 1;
     display: flex;
     align-items: center;

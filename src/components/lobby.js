@@ -16,9 +16,9 @@ export function Lobby(props) {
                     <Input type={'text'} name={'invite code'}/>
                 </Form>
                 
-                <Form handleSubmit={(form)=>{}} submitionName={"Create"} className={"create"}>
+                <Form handleSubmit={(form)=>{}} submitionName={"Create"} id={"create"}>
                     <Input type={'text'} name={'nickname'}/>
-                    <Input type={'number'} name={3}/>
+                    <Input type={'number'} name='3'/>
                 </Form>
             </Tabs>
 
