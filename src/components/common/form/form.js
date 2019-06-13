@@ -1,25 +1,49 @@
-import React, {Fragment} from "react";
+import React from "react";
 import {FormButton} from "../buttons";
-import {Input} from "../input";
+import {Input} from "./input";
+import styled from "styled-components";
 
 export function Form(props) {
-    const formMap = new Map();
+
+    const [formVal, setFormVal] = React.useState(props.children.map((input) => {
+        return input.props.name
+    }));
+
+    function handleChange(e, i) {
+        e.preventDefault();
+        const values = [...formVal];
+        const target = e.target;
+        console.log(formVal);
+        values[i] = (target.type === 'checkbox' ? target.checked : target.value);
+        setFormVal(values);
+
+    }
+
     return (
-        <Fragment>
+        <FormDiv>
             {
                 props.children.map((input, index) => {
-                    const [name, value, ...passProp] = input.props;
-                    formMap.set(name, value);
-                    <Input {...passProp} />
+                    const {name, value, ...passProp} = input.props;
+                    return <Input value={formVal[index]} name={name} {...passProp} onChange={e => {
+                        handleChange(e, index)
+                    }}/>;
                 })
             }
+
+
             <FormButton onClick={() => {
                 props.handleSubmit()
-            }}>Join</FormButton>
-        </Fragment>
+            }} show> Join </FormButton>
+        </FormDiv>
     )
 }
 
+const FormDiv = styled.div`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;                 
+`
 
 //
 // tabs() {

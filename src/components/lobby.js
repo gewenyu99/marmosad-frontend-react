@@ -2,19 +2,24 @@ import React from 'react';
 import {LobbyCard} from "./common/card";
 import {Tabs} from "./common/tabs";
 import rp from "request-promise-native";
-// @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-// font-family: 'Open Sans', sans-serif;  font-size: 12px;
+import {Form} from "./common/form/form";
+import {Input} from "./common/form/input";
+import {FormButton} from "./common/buttons";
 
-export function Lobby() {
+
+export function Lobby(props) {
     return (
         <LobbyCard>
             <Tabs headerText="Lobby" tabs={['Join', 'Create']}>
-                <div>
-                    HOHOHO
-                </div>
-                <div>
-                    HEHEHE
-                </div>
+                <Form handleSubmit={(form)=>{}}>
+                    <Input type={'text'} name={'nickname'}/>
+                    <Input type={'text'} name={'invite code'}/>
+                </Form>
+
+                <Form handleSubmit={(form)=>{}}>
+                    <Input type={'text'} name={'nickname'}/>
+                    <Input type={'number'} name={3}/>
+                </Form>
             </Tabs>
 
         </LobbyCard>

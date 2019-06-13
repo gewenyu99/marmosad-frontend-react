@@ -13,7 +13,7 @@ export const Button = styled.button`
 `;
 
 export const NavButton = styled(Button)`
-    margin: 10px;
+    margin: 20px;
     font-size: 20px;
     background: #ff5b5b;
     color: #3b3e47;

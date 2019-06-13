@@ -6,18 +6,21 @@ import {ViewRoute} from "./components/common/viewRoute/ViewRoute";
 import {Lobby} from "./components/lobby";
 import {Board} from "./components/board/board";
 import {Nav} from "./components/nav/nav";
+import {DefaultViewContext} from "./components/common/viewRoute/ViewHook";
 
 
 function App() {
 
     return (
         <BG>
+            <DefaultViewContext.Provider value={'lobby'}>
             <GlobalStyle heading/>
             <Nav/>
-            <ViewRoute default={'lobby'} views = {['lobby', 'board']}>
-                <Lobby/>
-                <Board/>
-            </ViewRoute>
+                <ViewRoute views={['lobby', 'board']}>
+                    <Lobby/>
+                    <Board/>
+                </ViewRoute>
+            </DefaultViewContext.Provider>
         </BG>
     );
 }

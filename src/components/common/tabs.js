@@ -31,7 +31,7 @@ export const TabHead = styled.h2`
   margin: 0;
   padding: 5px;
   color: ${props => (props.selected ? '#3b3e47' : '#ff5b5b')};
-  background: ${props => (props.selected ? '#ff5b5b' : '#3b3e47')};
+  background: ${props => (props.selected ? 'white' : '#3b3e47')};
   font-size: 20px;
   text-align: center;
   flex: 1;
@@ -42,9 +42,10 @@ export const TabHead = styled.h2`
 export const TabBody = styled.div`
   margin: 0;
   padding: 5px;
-  color: "#3b3e47";
-  background: "#ff5b5b"
+  color: #3b3e47;
+  background: white;
   flex: 1;
+  font-size: 20px;
 `;
 
 
