@@ -6,7 +6,7 @@ export const Header = styled.header`
   color: #ff5b5b;
   background: #3b3e47;
   font-size: 20px;
-  font-weight: bolder;
+  font-weight: bold;
   text-align: center;
   flex: 1;
   max-height: 30px;

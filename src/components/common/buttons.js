@@ -19,6 +19,12 @@ export const NavButton = styled(Button)`
     color: #3b3e47;
     position: absolute;
     right: 0;
+    border-radius: 2px;
+
+    :hover {
+        background: grey;
+        color: white;
+    }
 `;
 export const FormButton = styled(Button)`
       padding: 10px;
@@ -29,5 +35,10 @@ export const FormButton = styled(Button)`
       background: #ff5b5b;
       color: white;
       max-width: 100px;
-`;
+      border-radius: 3px;
 
+      :hover {
+        background: grey;
+        color: white;
+      }
+`;
