@@ -6,7 +6,6 @@ import {NavText} from "./navText";
 import {DefaultViewContext, useView} from "../common/viewRoute/ViewHook";
 import goose from '../../asset/goose.svg'
 import {NavIcon} from "./navIcon";
-import {NavCentered} from "../common/pageRoot";
 
 export const NavBar = styled.nav`
     min-height: 40px;
@@ -30,15 +29,14 @@ export const Nav = () => {
     const defaultView = React.useContext(DefaultViewContext);
 
     const [curView, setView] = useView(defaultView);
-    console.log('curview: ', curView);
     return (
-        <NavBar class="navBar">
-                <NavTag>
-                    <NavText>Marmosad</NavText> <NavIcon src={goose} className="goose-icon" alt="goose-img"/>
-                </NavTag>
+        <NavBar className="navBar">
+            <NavTag>
+                <NavText>Marmosad</NavText> <NavIcon src={goose} className="goose-icon" alt="goose-img"/>
+            </NavTag>
             <NavButton onClick={() => {
                 setView('lobby')
-            }} show={curView == 'lobby'}> Back </NavButton>
+            }} show={curView !== 'lobby'}> Back </NavButton>
         </NavBar>
     )
 };

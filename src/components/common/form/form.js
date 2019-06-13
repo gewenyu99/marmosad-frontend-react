@@ -4,18 +4,25 @@ import {Input} from "./input";
 import styled from "styled-components";
 
 export function Form(props) {
-
+    //sets default values to name
     const [formVal, setFormVal] = React.useState(props.children.map((input) => {
-        const value = {}
-        value[props.className] = input.props.name
-        return value
+        return input.props.type === 'number' ? parseInt(input.props.name) : input.props.name
     }));
+
+    //resets default values when switching between forms. This is only useful when using within the tabs.
+    React.useEffect(() => {
+        setFormVal(props.children.map((input) => {
+            return input.props.type === 'number' ? parseInt(input.props.name) : input.props.name
+        }));
+
+    }, [props.className]);
+
 
     function handleChange(e, i) {
         e.preventDefault();
         const values = [...formVal];
         const target = e.target;
-        values[i][props.className] = (target.type === 'checkbox' ? target.checked : target.value);
+        values[i] = (target.type === 'number' ? parseInt(target.value) : target.value);
         setFormVal(values);
     }
 
@@ -24,7 +31,8 @@ export function Form(props) {
             {
                 props.children.map((input, index) => {
                     const {name, value, ...passProp} = input.props;
-                    return <Input className={props.className} value={formVal[index][props.className]} name={name} {...passProp} onChange={e => {
+                    return <Input className={props.className} value={formVal[index]}
+                                  key={name} {...passProp} onChange={e => {
                         handleChange(e, index)
                     }}/>;
                 })
@@ -32,7 +40,11 @@ export function Form(props) {
 
 
             <FormButton onClick={() => {
-                props.handleSubmit()
+                let form = {};
+                props.children.map((val, index) => {
+                    form[val.props.formName] = formVal[index];
+                });
+                props.handleSubmit(form)
             }} show> {props.submitionName} </FormButton>
         </FormDiv>
     )
@@ -43,7 +55,7 @@ const FormDiv = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;                 
-`
+`;
 
 //
 // tabs() {

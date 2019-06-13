@@ -12,13 +12,17 @@ export function Lobby(props) {
         <LobbyCard>
             <Tabs headerText="Lobby" tabs={['Join', 'Create']}>
                 <Form handleSubmit={(form)=>{}} submitionName={"Join"} className={"join"}>
-                    <Input type={'text'} name={'nickname'}/>
-                    <Input type={'text'} name={'invite code'}/>
+                    <Input type={'text'} name={'nickname'} formName={'name'}/>
+                    <Input type={'text'} name={'invite code'} formName={'boardId'}/>
                 </Form>
                 
-                <Form handleSubmit={(form)=>{}} submitionName={"Create"} id={"create"}>
-                    <Input type={'text'} name={'nickname'}/>
-                    <Input type={'number'} name='3'/>
+                <Form handleSubmit={async form => {
+                    await createBoard(form);
+                    console.log(form)
+                }} submitionName={"Create"} className={"create"}>
+                    <Input type={'text'} name={'nickname'} formName={'name'}/>
+                    <Input type={'text'} name={'card packs'} formName={'card-packs'}/>
+                    <Input type={'number'} name='3' formName={'numberOfPlayers'}/>
                 </Form>
             </Tabs>
 

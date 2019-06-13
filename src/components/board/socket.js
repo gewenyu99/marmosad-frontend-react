@@ -1,9 +1,6 @@
 export class Socket {
-    constructor(url, boardId, name) {
+    constructor(url) {
         this.ws = new WebSocket(url);
-        this.ws.addEventListener('open', () => {
-            this.ws.send(JSON.stringify({'action': 'join', 'boardId': boardId, 'name': name}));
-        })
     }
 
     connection() {
