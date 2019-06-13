@@ -15,10 +15,11 @@ export function Board(props) {
     });
 
     React.useEffect(() => {
-        connection.addEventListener('on', () => {
-            this.ws.send(JSON.stringify({'action': 'join', 'boardId': props.boardId, 'name': props.name}));
+        connection.addEventListener('open', () => {
+            console.log({'action': 'join', 'boardId': props.boardId, 'name': props.name});
+            connection.send(JSON.stringify({'action': 'join', 'boardId': props.boardId, 'name': props.name}));
         })
-    });
+    }, [connection]);
 
     return (
         <BoardCard>

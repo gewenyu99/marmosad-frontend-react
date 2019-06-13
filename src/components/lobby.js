@@ -19,13 +19,14 @@ export function Lobby(props) {
 
                 <Form handleSubmit={async (form) => {
                     props.setName(form['name']);
+                    form['cardPacks'] = form['cardPacks'].replace(' ','').split(',');
                     const createdBoard = await createBoard(form);
                     props.setBoardId(createdBoard['body']['boardId']);
                     props.setView('board');
                     console.log('routing to ', props.curView)
                 }} submitionName={"Create"} className={"create"}>
                     <Input type={'text'} name={'nickname'} formName={'name'}/>
-                    <Input type={'text'} name={'card packs'} formName={'card-packs'}/>
+                    <Input type={'text'} name={'room-309, classic'} formName={'cardPacks'}/>
                     <Input type={'number'} name='3' formName={'numberOfPlayers'}/>
                 </Form>
             </Tabs>
