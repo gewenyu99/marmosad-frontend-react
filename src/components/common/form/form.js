@@ -6,17 +6,17 @@ import styled from "styled-components";
 export function Form(props) {
 
     const [formVal, setFormVal] = React.useState(props.children.map((input) => {
-        return input.props.name
+        const value = {}
+        value[props.className] = input.props.name
+        return value
     }));
 
     function handleChange(e, i) {
         e.preventDefault();
         const values = [...formVal];
         const target = e.target;
-        console.log(formVal);
-        values[i] = (target.type === 'checkbox' ? target.checked : target.value);
+        values[i][props.className] = (target.type === 'checkbox' ? target.checked : target.value);
         setFormVal(values);
-
     }
 
     return (
@@ -24,7 +24,7 @@ export function Form(props) {
             {
                 props.children.map((input, index) => {
                     const {name, value, ...passProp} = input.props;
-                    return <Input value={formVal[index]} name={name} {...passProp} onChange={e => {
+                    return <Input className={props.className} value={formVal[index][props.className]} name={name} {...passProp} onChange={e => {
                         handleChange(e, index)
                     }}/>;
                 })
@@ -33,7 +33,7 @@ export function Form(props) {
 
             <FormButton onClick={() => {
                 props.handleSubmit()
-            }} show> Join </FormButton>
+            }} show> {props.submitionName} </FormButton>
         </FormDiv>
     )
 }

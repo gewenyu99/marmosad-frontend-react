@@ -11,12 +11,12 @@ export function Lobby(props) {
     return (
         <LobbyCard>
             <Tabs headerText="Lobby" tabs={['Join', 'Create']}>
-                <Form handleSubmit={(form)=>{}}>
+                <Form handleSubmit={(form)=>{}} submitionName={"Join"} className={"join"}>
                     <Input type={'text'} name={'nickname'}/>
                     <Input type={'text'} name={'invite code'}/>
                 </Form>
-
-                <Form handleSubmit={(form)=>{}}>
+                
+                <Form handleSubmit={(form)=>{}} submitionName={"Create"} className={"create"}>
                     <Input type={'text'} name={'nickname'}/>
                     <Input type={'number'} name={3}/>
                 </Form>
