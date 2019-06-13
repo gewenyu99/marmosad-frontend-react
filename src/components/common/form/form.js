@@ -31,14 +31,11 @@ export function Form(props) {
             {
                 props.children.map((input, index) => {
                     const {name, value, ...passProp} = input.props;
-                    return <Input className={props.className} value={formVal[index]}
-                                  key={name} {...passProp} onChange={e => {
-                        handleChange(e, index)
-                    }}/>;
-                })
-            }
-
-
+                    return <Input className={props.className} value={formVal[index]} key={name} {...passProp}
+                                  onChange={e => {
+                                      handleChange(e, index)
+                                  }}/>;
+                })}
             <FormButton onClick={() => {
                 let form = {};
                 props.children.map((val, index) => {
