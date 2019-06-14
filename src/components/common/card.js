@@ -5,6 +5,7 @@ export const Card = styled.div`
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   border-radius: 5px;
   flex: 1;
+  user-select: none;
 `;
 
 export const LobbyCard = styled(Card)`
@@ -45,5 +46,18 @@ export const ChatCard = styled(Card)`
 export const PlayAreaCard = styled(Card)`
   flex: 75;
   flex-grow: 75;
-  color: 'black';
+`;
+
+export const WhiteCard = styled(Card)`
+  flex: 1;
+  background:#ff5b5b;
+    min-width: 75px
+  min-height: 100px
+`;
+
+export const BlackCard = styled(Card)`
+  flex: 1;
+  background:#3b3e47;
+  min-width: 75px
+  min-height: 100px
 `;

@@ -35,7 +35,7 @@ export function Form(props) {
                                   onChange={e => {
                                       handleChange(e, index)
                                   }}/>;
-                })}
+                })};
             <FormButton onClick={() => {
                 let form = {};
                 props.children.map((val, index) => {
