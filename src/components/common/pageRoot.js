@@ -24,3 +24,5 @@ export const Centered = styled.main`
     align-items: center;
     justify-content: center;
  `;
+
+

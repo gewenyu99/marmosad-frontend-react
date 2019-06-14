@@ -45,5 +45,5 @@ export const ChatCard = styled(Card)`
 export const PlayAreaCard = styled(Card)`
   flex: 75;
   flex-grow: 75;
-
+  color: 'black';
 `;

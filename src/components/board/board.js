@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import {Socket} from "./socket";
 import {BoardCard, ChatCard, PlayAreaCard, ScoreCard} from "../common/card";
 import styled from "styled-components";
+import {Container} from "../drag/container";
 
 export function Board(props) {
     console.log(props.url, props.boardId, props.name);
@@ -21,6 +22,8 @@ export function Board(props) {
         })
     }, [connection]);
 
+    const [dragged, setDragged] = useState(null);
+
     return (
         <BoardCard>
             <ChatScoreDiv>
@@ -33,7 +36,12 @@ export function Board(props) {
                 </ChatCard>
             </ChatScoreDiv>
             <SpacerDiv/>
-            <PlayAreaCard/>
+            <PlayAreaCard>
+                <Container onDrag={setDragged}>
+                    <h2>1</h2>
+                    <h2>2</h2>
+                </Container>
+            </PlayAreaCard>
         </BoardCard>
     )
 }
