@@ -51,10 +51,12 @@ export function Board(props) {
         <BoardCard>
             <ChatScoreDiv>
                 <ScoreCard>
+                    <CardHead>Score Board</CardHead>
 
                 </ScoreCard>
                 <SpacerDiv/>
                 <ChatCard>
+                    <CardHead>Chat</CardHead>
 
                 </ChatCard>
             </ChatScoreDiv>
@@ -97,4 +99,15 @@ export const SpacerDiv = styled.div`
     flex: 1;
     flex-direction: column
     justify-content: stretch; 
+`;
+export const CardHead = styled.h2`
+    padding: 10px;
+    margin: 0px;
+  color: #ff5b5b;
+  background: #3b3e47;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  flex: 1;
+  max-height: 30px;
 `;

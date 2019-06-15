@@ -23,12 +23,12 @@ export const LobbyCard = styled(Card)`
 `;
 
 export const BoardCard = styled(Card)`
+  padding: 20px;
   flex: 1;
   background: white;
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100%;
   align-self: stretch;
   justify-self: stretch;
   justify-content: space-between;

@@ -3,7 +3,6 @@ import React from "react";
 import {NavButton} from "../common/buttons";
 import {NavTag} from "./navTag";
 import {NavText} from "./navText";
-import {DefaultViewContext, useView} from "../common/viewRoute/ViewHook";
 import goose from '../../asset/goose.svg'
 import {NavIcon} from "./navIcon";
 

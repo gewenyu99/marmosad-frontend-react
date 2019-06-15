@@ -1,6 +1,5 @@
 import React from 'react';
 import {Centered} from "../pageRoot";
-import {DefaultViewContext, useView} from "./ViewHook";
 
 
 export function ViewRoute(props) {
