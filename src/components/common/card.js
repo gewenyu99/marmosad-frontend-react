@@ -32,7 +32,6 @@ export const BoardCard = styled(Card)`
   align-self: stretch;
   justify-self: stretch;
   justify-content: space-between;
-
 `;
 
 export const ScoreCard = styled(Card)`

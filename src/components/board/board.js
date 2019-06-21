@@ -5,6 +5,8 @@ import styled from "styled-components";
 import {Container} from "../drag/container";
 import {useView} from "../common/viewRoute/ViewHook";
 import {DebugModal} from "../debug";
+import {Input} from "../common/form/input";
+import {Form} from "../common/form/form";
 
 export function Board(props) {
     const [dragged, setDragged] = useState(null);
@@ -79,11 +81,7 @@ export function Board(props) {
                     {hand}
                 </Container>
             </PlayAreaCard>
-            <DebugModal>
-                <ol>
-                    {socket.debug.map((msg) => {return <li>{msg}</li>})}
-                </ol>
-            </DebugModal>
+            <DebugModal socket={socket}/>
         </BoardCard>
     )
 }

@@ -1,10 +1,10 @@
-import {DebugModal} from "../debug";
-
 export class Socket {
     constructor(url) {
         this.ws = new WebSocket(url);
         this.debug = [];
-        this.ws.addEventListener('message', (e)=>{this.debug.push(e)});
+        this.ws.addEventListener('message', (e) => {
+            this.debug.push(e)
+        });
     }
 
     connection() {
@@ -19,5 +19,9 @@ export class Socket {
             console.log(e)
         }
         this.ws.close();
+    }
+
+    send(d) {
+        this.ws.send(d)
     }
 }
