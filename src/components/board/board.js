@@ -3,11 +3,14 @@ import {Socket} from "./socket";
 import {BlackCard, BoardCard, ChatCard, PlayAreaCard, ScoreCard, WhiteCard} from "../common/card";
 import styled from "styled-components";
 import {Container} from "../drag/container";
+import {useView} from "../common/viewRoute/ViewHook";
+import {DebugModal} from "../debug";
 
 export function Board(props) {
     const [dragged, setDragged] = useState(null);
     const [fromContainer, setFromContainer] = useState(null);
     const [submissions, setSubmissions] = useState([<BlackCard>Lorem</BlackCard>]);
+    const [hand, setHand] = useState([<WhiteCard>Lorem</WhiteCard>, <WhiteCard>Ipsum</WhiteCard>]);
 
     function addSubmission(item) {
         let temp = submissions;
@@ -15,7 +18,6 @@ export function Board(props) {
         setSubmissions(temp)
     }
 
-    const [hand, setHand] = useState([<WhiteCard>Lorem</WhiteCard>, <WhiteCard>Ipsum</WhiteCard>]);
 
     function addHand(item) {
         let temp = hand;
@@ -46,7 +48,7 @@ export function Board(props) {
         let event = e;
         event.stopPropagation();
         event.preventDefault();
-    }
+    };
     return (
         <BoardCard>
             <ChatScoreDiv>
@@ -77,6 +79,11 @@ export function Board(props) {
                     {hand}
                 </Container>
             </PlayAreaCard>
+            <DebugModal>
+                <ol>
+                    {socket.debug.map((msg) => {return <li>{msg}</li>})}
+                </ol>
+            </DebugModal>
         </BoardCard>
     )
 }

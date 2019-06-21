@@ -17,10 +17,8 @@ export const NavButton = styled(Button)`
     font-size: 20px;
     background: #ff5b5b;
     color: #3b3e47;
-    position: absolute;
-    right: 0;
+    position: flex;
     border-radius: 2px;
-
     :hover {
         background: grey;
         color: white;
