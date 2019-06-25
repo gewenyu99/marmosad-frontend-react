@@ -7,8 +7,14 @@ import {useView} from "../common/viewRoute/ViewHook";
 import {DebugModal} from "../debug";
 import {Input} from "../common/form/input";
 import {Form} from "../common/form/form";
+import {Chat} from "../chat";
 
 export function Board(props) {
+    let [socket, ] = useState(() => {
+        const initialState = new Socket(props.url, props.boardId, props.name);
+        return initialState;
+    });
+
     const [dragged, setDragged] = useState(null);
     const [fromContainer, setFromContainer] = useState(null);
     const [submissions, setSubmissions] = useState([<BlackCard>Lorem</BlackCard>]);
@@ -20,29 +26,19 @@ export function Board(props) {
         setSubmissions(temp)
     }
 
-
     function addHand(item) {
         let temp = hand;
         temp.push(item);
         setHand(temp)
     }
-
-    let socket = new Socket(props.url, props.boardId, props.name);
-
-    let connection = socket.connection();
+    // attempt to always properly close socket
     React.useEffect(() => {
         window.addEventListener('beforeunload', () => {
             this.state.socket.leave();
         });
-
     });
-
-    React.useEffect(() => {
-        connection.addEventListener('open', () => {
-            connection.send(JSON.stringify({'action': 'join', 'boardId': props.boardId, 'name': props.name}));
-        })
-    }, [connection]);
-
+    // joins board on connection
+    // TODO implement actual logic here, if we choose to do it here :')
     React.useEffect(() => {
         console.log(dragged);
     }, [dragged]);
@@ -51,6 +47,7 @@ export function Board(props) {
         event.stopPropagation();
         event.preventDefault();
     };
+
     return (
         <BoardCard>
             <ChatScoreDiv>
@@ -59,10 +56,7 @@ export function Board(props) {
 
                 </ScoreCard>
                 <SpacerDiv/>
-                <ChatCard>
-                    <CardHead>Chat</CardHead>
-
-                </ChatCard>
+                <Chat chat={socket.chat}/>
             </ChatScoreDiv>
             <SpacerDiv/>
             <PlayAreaCard>

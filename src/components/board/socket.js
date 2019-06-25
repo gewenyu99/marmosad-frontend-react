@@ -1,9 +1,10 @@
+import React from "react";
+
 export class Socket {
-    constructor(url) {
+    constructor(url, boardId, name) {
         this.ws = new WebSocket(url);
-        this.debug = [];
-        this.ws.addEventListener('message', (e) => {
-            this.debug.push(e)
+        this.ws.addEventListener('open', () => {
+            this.ws.send(JSON.stringify({'action': 'join', 'boardId': boardId, 'name': name}));
         });
     }
 
@@ -23,5 +24,13 @@ export class Socket {
 
     send(d) {
         this.ws.send(d)
+    }
+
+    chat(msg) {
+        this.ws.send({
+            "action": "chat", "data": {
+                "message": msg
+            }
+        })
     }
 }

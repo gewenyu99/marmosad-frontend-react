@@ -36,21 +36,21 @@ export const BoardCard = styled(Card)`
 
 export const ScoreCard = styled(Card)`
       flex: 50;
-      flex-grow: 50;
 `;
 export const ChatCard = styled(Card)`
+    flex-direction: column;
     flex: 50;
-    flex-grow: 50;
+    display: flex;
+    justify-content: start;
 `;
 export const PlayAreaCard = styled(Card)`
   flex: 75;
-  flex-grow: 75;
 `;
 
 export const WhiteCard = styled(Card)`
   flex: 1;
   background:#ff5b5b;
-    min-width: 75px
+  min-width: 75px;
   min-height: 100px
 `;
 

@@ -1,5 +1,5 @@
 import {FormButton} from "./common/buttons";
-import React, {createContext, useContext, useEffect, useState} from "react";
+import React, {createContext, useContext, useState} from "react";
 import styled from "styled-components";
 import {BoardCard} from "./common/card";
 import {Input} from "./common/form/input";
@@ -9,25 +9,27 @@ export const DebugModal = (props) => {
         // props.setDebugModal(false);
     };
 
-    useEffect(() => {
-        let a = props.socket.debug.map((msg) => {
-            return <li>{msg}</li>
-        });
-        console.log(a)
-    }, [props.socket.debug.map]);
+    const [debug, setDebug] = useState([]);
 
-
+    React.useEffect(() => {
+        props.socket.connection().onmessage = (e) => {
+            setDebug(debug.concat([JSON.stringify(e.data)]));
+            console.log(e.data)
+        }
+    });
     const [input, setInput] = useState();
     const handleSend = () => {
-        props.socket.send(JSON.stringify({'action':'event', 'body': input}));
+        props.socket.send(JSON.stringify({'action': 'event', 'body': input}));
     };
     return (
         <Modal show={useContext(DebugContext)}>
             <BoardCard>
                 <section className="modal-main">
-                    <ol>
-
-                    </ol>
+                    <ul>
+                        {debug.map((val, i) => {
+                            return <li key={i}>{val}</li>
+                        })}
+                    </ul>
                     <Input type={'text'} value={input} onChange={e => {
                         setInput(e.target.value)
                     }}/>
