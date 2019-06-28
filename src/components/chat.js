@@ -25,7 +25,7 @@ export function Chat(props) {
             <CardHead>Chat</CardHead>
             <ChatMessageContainer>
                 {messages.map((msg, i) => {
-                    return <ChatMessage key={i}>{msg.name}: {msg.message}</ChatMessage>
+                    return <ChatMessage key={i} you={msg.you}>{msg.name}: {msg.message}</ChatMessage>
                 })}
             </ChatMessageContainer>
             <ChatInput type={'text'} value={input} onChange={e => {
@@ -44,6 +44,7 @@ export const ChatMessageContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: start;
+    overflow: scroll;
 `;
 
 export const ChatMessage = styled.div`
