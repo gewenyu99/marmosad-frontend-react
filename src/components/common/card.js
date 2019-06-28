@@ -60,3 +60,14 @@ export const BlackCard = styled(Card)`
   min-width: 75px
   min-height: 100px
 `;
+export const CardHead = styled.h2`
+    padding: 10px;
+    margin: 0;
+    color: #ff5b5b;
+    background: #3b3e47;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    flex: 1;
+    max-height: 30px;
+`;

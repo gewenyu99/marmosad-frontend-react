@@ -15,4 +15,5 @@ export const Input = styled.input`
 export const ChatInput = styled(Input)`
     margin-top: auto;
     justify-self: flex-end;
+    flex: 1;
 `;

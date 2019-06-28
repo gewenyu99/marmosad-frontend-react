@@ -8,9 +8,9 @@ export class Socket {
         });
     }
 
-    connection() {
+    connection = () => {
         return this.ws;
-    }
+    };
 
     leave() {
         console.log('leaving');
@@ -22,15 +22,21 @@ export class Socket {
         this.ws.close();
     }
 
-    send(d) {
+    send = (d) => {
         this.ws.send(d)
-    }
+    };
 
-    chat(msg) {
-        this.ws.send({
-            "action": "chat", "data": {
-                "message": msg
+    chat = (msg) => {
+        this.ws.send(JSON.stringify({
+            "action": "chat", "message": msg
+        }))
+    };
+
+    handleChat = (handler) => {
+        this.connection().onmessage = (e) => {
+            if (JSON.parse(e.data).gameEvent === 'chat') {
+                handler(JSON.parse(e.data).message);
             }
-        })
+        };
     }
 }

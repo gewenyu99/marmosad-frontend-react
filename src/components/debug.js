@@ -14,7 +14,6 @@ export const DebugModal = (props) => {
     React.useEffect(() => {
         props.socket.connection().onmessage = (e) => {
             setDebug(debug.concat([JSON.stringify(e.data)]));
-            console.log(e.data)
         }
     });
     const [input, setInput] = useState();
