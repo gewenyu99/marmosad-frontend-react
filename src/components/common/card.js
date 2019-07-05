@@ -43,23 +43,6 @@ export const ChatCard = styled(Card)`
     display: flex;
     justify-content: start;
 `;
-export const PlayAreaCard = styled(Card)`
-  flex: 75;
-`;
-
-export const WhiteCard = styled(Card)`
-  flex: 1;
-  background:#ff5b5b;
-  min-width: 75px;
-  min-height: 100px
-`;
-
-export const BlackCard = styled(Card)`
-  flex: 1;
-  background:#3b3e47;
-  min-width: 75px
-  min-height: 100px
-`;
 export const CardHead = styled.h2`
     padding: 10px;
     margin: 0;

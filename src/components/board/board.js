@@ -4,11 +4,23 @@ import {BoardCard, CardHead, PlayAreaCard, ScoreCard} from "../common/card";
 import styled from "styled-components";
 import {DebugModal} from "../debug";
 import {Chat} from "../chat";
+import {PlayArea} from "../playArea";
 
 export function Board(props) {
+    // this bit of code for socket is lazy init, which runs once on construction but not rerender
     let [socket,] = useState(() => {
         const initialState = new Socket(props.url, props.boardId, props.name);
         return initialState;
+    });
+
+    const [hand, setHand] = useState([]);
+    const [played, setplayed] = useState([]);
+    const [blackCard, setBlackCard] = useState({});
+
+    React.useEffect(() => {
+        socket.connection().onmessage(onmessage = (e) => {
+            setHand(e.data.hand);
+        })
     });
 
     // attempt to always properly close socket
@@ -23,15 +35,13 @@ export function Board(props) {
             <ChatScoreDiv>
                 <ScoreCard>
                     <CardHead>Score Board</CardHead>
-
                 </ScoreCard>
                 <SpacerDiv/>
                 <Chat chat={socket.chat} handleChat={socket.handleChat}/>
             </ChatScoreDiv>
             <SpacerDiv/>
-            <PlayAreaCard>
-            </PlayAreaCard>
-            <DebugModal socket={socket}/>
+            <PlayArea hand={hand} played={played} blackCard={blackCard}/>
+            <DebugModal setDebug={props.setDebug} socket={socket}/>
         </BoardCard>
     )
 }

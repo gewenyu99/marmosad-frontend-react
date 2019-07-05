@@ -6,7 +6,7 @@ import {Input} from "./common/form/input";
 
 export const DebugModal = (props) => {
     const handleClose = () => {
-        // props.setDebugModal(false);
+        props.setDebug(false);
     };
 
     const [debug, setDebug] = useState([]);
@@ -18,7 +18,7 @@ export const DebugModal = (props) => {
     });
     const [input, setInput] = useState();
     const handleSend = () => {
-        props.socket.send(JSON.stringify({'action': 'event', 'body': input}));
+        props.socket.send(input);
     };
     return (
         <Modal show={useContext(DebugContext)}>
