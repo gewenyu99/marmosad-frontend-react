@@ -12,6 +12,13 @@ export class Socket {
         return this.ws;
     };
 
+    start = () => {
+        this.ws.send(JSON.stringify({'action': 'start'}));
+    };
+    nudge = () => {
+        this.ws.send(JSON.stringify({'action': 'nudge'}));
+    };
+
     leave() {
         console.log('leaving');
         try {

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Socket} from "./socket";
-import {BoardCard, CardHead, PlayAreaCard, ScoreCard} from "../common/card";
+import {BoardCard, CardHead, ScoreCard} from "../common/card";
 import styled from "styled-components";
 import {DebugModal} from "../debug";
 import {Chat} from "../chat";
@@ -18,9 +18,18 @@ export function Board(props) {
     const [blackCard, setBlackCard] = useState({});
 
     React.useEffect(() => {
-        socket.connection().onmessage(onmessage = (e) => {
-            setHand(e.data.hand);
-        })
+        socket.connection().onmessage = (e) => {
+            const update = JSON.parse(e.data);
+            console.log(JSON.parse(e.data));
+            if (update.gameEvent === "update") {
+                const fill = 6 - update.display.whiteCards.length;
+                setplayed(update.display.whiteCards.concat(new Array(fill).fill({})));
+
+
+                setHand(update.hand);
+                setBlackCard(update.display.blackCard);
+            }
+        }
     });
 
     // attempt to always properly close socket
@@ -40,7 +49,7 @@ export function Board(props) {
                 <Chat chat={socket.chat} handleChat={socket.handleChat}/>
             </ChatScoreDiv>
             <SpacerDiv/>
-            <PlayArea hand={hand} played={played} blackCard={blackCard}/>
+            <PlayArea hand={hand} played={played} blackCard={blackCard} start={socket.start} nudge={socket.nudge}/>
             <DebugModal setDebug={props.setDebug} socket={socket}/>
         </BoardCard>
     )

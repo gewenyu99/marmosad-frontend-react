@@ -24,7 +24,7 @@ export const NavButton = styled(Button)`
         color: white;
     }
 `;
-export const FormButton = styled(Button)`
+export const ActionButton = styled(Button)`
       padding: 10px;
       margin: 10px;
       font-size: 18px;

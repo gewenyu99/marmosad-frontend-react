@@ -1,4 +1,4 @@
-import {FormButton} from "./common/buttons";
+import {ActionButton} from "./common/buttons";
 import React, {createContext, useContext, useState} from "react";
 import styled from "styled-components";
 import {BoardCard} from "./common/card";
@@ -32,8 +32,8 @@ export const DebugModal = (props) => {
                     <Input type={'text'} value={input} onChange={e => {
                         setInput(e.target.value)
                     }}/>
-                    <FormButton show onClick={handleSend}>send</FormButton>
-                    <FormButton show onClick={handleClose}>close</FormButton>
+                    <ActionButton show onClick={handleSend}>send</ActionButton>
+                    <ActionButton show onClick={handleClose}>close</ActionButton>
                 </section>
             </BoardCard>
 
@@ -49,7 +49,7 @@ export const Modal = styled.div`
     height: auto;
     top:50%;
     left:50%;
-    padding: 50px
+    padding: 50px;
     transform: translate(-50%,-50%);
     background: transparent;
     display: ${props => props.show ? 'block' : 'none'}

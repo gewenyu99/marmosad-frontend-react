@@ -1,5 +1,5 @@
 import React from "react";
-import {FormButton} from "../buttons";
+import {ActionButton} from "../buttons";
 import {Input} from "./input";
 import styled from "styled-components";
 
@@ -36,13 +36,13 @@ export function Form(props) {
                                       handleChange(e, index)
                                   }}/>;
                 })}
-            <FormButton onClick={() => {
+            <ActionButton onClick={() => {
                 let form = {};
                 props.children.map((val, index) => {
                     form[val.props.formName] = formVal[index];
                 });
                 props.handleSubmit(form)
-            }} show> {props.submitionName} </FormButton>
+            }} show> {props.submitionName} </ActionButton>
         </FormDiv>
     )
 }
