@@ -49,7 +49,11 @@ export function Board(props) {
                 <Chat chat={socket.chat} handleChat={socket.handleChat}/>
             </ChatScoreDiv>
             <SpacerDiv/>
-            <PlayArea hand={hand} played={played} blackCard={blackCard} start={socket.start} nudge={socket.nudge}/>
+            <PlayArea hand={hand.map((card, i) => {
+                card.key = i;
+                return card
+            })} played={played} blackCard={blackCard} start={socket.start} nudge={socket.nudge} submit={socket.submit}
+                      boardId={props.boardId}/>
             <DebugModal setDebug={props.setDebug} socket={socket}/>
         </BoardCard>
     )

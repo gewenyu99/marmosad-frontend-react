@@ -18,6 +18,9 @@ export class Socket {
     nudge = () => {
         this.ws.send(JSON.stringify({'action': 'nudge'}));
     };
+    submit = (card)=>{
+        this.ws.send(JSON.stringify({'action': 'submit', 'card': card}));
+    };
 
     leave() {
         console.log('leaving');

@@ -1,22 +1,42 @@
 import {Card, CardHead} from "./common/card";
 import styled from "styled-components";
-import React from "react";
-import {ActionButton, Button} from "./common/buttons";
+import React, {useState} from "react";
+import {ActionButton} from "./common/buttons";
 
 export function PlayArea(props) {
+    const [draggedCard, setDraggedCard] = useState(null);
+    let handleDrag = (e, card) => {
+        console.log(e);
+        setDraggedCard(card)
+    };
 
+    let handleDrop = (e) => {
+        console.log(e);
+        if (draggedCard)
+            props.submit(draggedCard);
+        setDraggedCard(null);
+        e.preventDefault();
+        e.stopPropagation();
+    };
     return (
         <PlayAreaCard>
             <CardHead>Invite Code: {props.boardId}</CardHead>
-            <DropArea>
+            <DropArea onDrop={handleDrop} onDragOver={e => {
+                e.preventDefault();
+                e.stopPropagation();
+            }}>
                 <BlackCard>{JSON.stringify(props.blackCard)}</BlackCard>
                 {props.played.map(card => {
                     return <WhiteCard>{JSON.stringify(card)}</WhiteCard>
                 })}
             </DropArea>
             <DropArea>
-                {props.hand.map(card => {
-                    return <WhiteCard>{JSON.stringify(card)}</WhiteCard>
+                {props.hand.map((card) => {
+                    return <div><WhiteCard key={card.key} draggable="true" onDragStart={e => {
+                        console.log(e);
+                        e.dataTransfer.setData("text", null);
+                        handleDrag(e, card)
+                    }}>{JSON.stringify(card)}</WhiteCard></div>
                 })}
             </DropArea>
             <div>
