@@ -1,17 +1,17 @@
-import {Card, CardHead} from "./common/card";
+import {BoardCard, Card, CardHead} from "./common/card";
 import styled from "styled-components";
 import React, {useState} from "react";
 import {ActionButton} from "./common/buttons";
+import {Modal} from "./common/popupModal";
 
 export function PlayArea(props) {
     const [draggedCard, setDraggedCard] = useState(null);
+    const [showInviteCode, setShowInviteCode] = useState(false);
     let handleDrag = (e, card) => {
-        console.log(e);
         setDraggedCard(card)
     };
 
     let handleDrop = (e) => {
-        console.log(e);
         if (draggedCard)
             props.submit(draggedCard);
         setDraggedCard(null);
@@ -20,33 +20,73 @@ export function PlayArea(props) {
     };
     return (
         <PlayAreaCard>
-            <CardHead>Invite Code: {props.boardId}</CardHead>
+            <CardHead>Played</CardHead>
             <DropArea onDrop={handleDrop} onDragOver={e => {
                 e.preventDefault();
                 e.stopPropagation();
             }}>
-                <BlackCard>{JSON.stringify(props.blackCard)}</BlackCard>
+                <BlackCard>
+                    <p>{props.blackCard.body}</p>
+                    {props.blackCard.cardId}
+                </BlackCard>
                 {props.played.map(card => {
-                    return <WhiteCard>{JSON.stringify(card)}</WhiteCard>
+                    return (
+                        <WhiteCard show={!(card.noDisplay)}>
+                            <p>{card.body}</p>
+                            {card.cardId}
+                        </WhiteCard>
+                    )
                 })}
             </DropArea>
+            <CardHead>Hand</CardHead>
             <DropArea>
                 {props.hand.map((card) => {
-                    return <div><WhiteCard key={card.key} draggable="true" onDragStart={e => {
-                        console.log(e);
-                        e.dataTransfer.setData("text", null);
-                        handleDrag(e, card)
-                    }}>{JSON.stringify(card)}</WhiteCard></div>
+                    return (
+                        <WhiteCard show key={card.key} draggable="true" onDragStart={
+                            e => {
+                                e.dataTransfer.setData("text", null);
+                                handleDrag(e, card)
+                            }}>
+                            <p>{card.body}</p>
+                            {card.cardId}
+                        </WhiteCard>
+                    )
                 })}
             </DropArea>
-            <div>
+            <ButtonArea>
                 <ActionButton show onClick={props.start}>Start</ActionButton>
                 <ActionButton show onClick={props.nudge}>Nudge</ActionButton>
-            </div>
+                <ActionButton show onClick={(e) => {
+                    setShowInviteCode(true)
+                }}>Invite Code</ActionButton>
+            </ButtonArea>
+            <InviteModal show={showInviteCode} set={setShowInviteCode} code={props.boardId}/>
         </PlayAreaCard>
     )
 }
 
+
+const InviteModal = (props) => {
+    let handleClose = () => {
+        props.set(false);
+    };
+    return (
+        <Modal show={props.show}>
+            <BoardCard>
+                <h1>Invite Code: {props.code}</h1>
+                <ActionButton show onClick={handleClose}>close</ActionButton>
+            </BoardCard>
+
+        </Modal>
+    );
+};
+
+export const ButtonArea = styled.div`
+ justify-content: stretch;
+ display: flex;
+ flex-direction: row;
+ 
+`;
 export const PlayAreaCard = styled(Card)`
   display: flex;
   flex: 75;
@@ -80,4 +120,5 @@ export const WhiteCard = styled(Card)`
   min-height: 100px;
  
   margin: 5px;
+  visibility: ${props => props.show ? 'visible' : 'hidden'}
 `;

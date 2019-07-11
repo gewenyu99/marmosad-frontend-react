@@ -17,7 +17,6 @@ export const NavButton = styled(Button)`
     font-size: 20px;
     background: #ff5b5b;
     color: #3b3e47;
-    position: flex;
     border-radius: 2px;
     :hover {
         background: grey;
@@ -32,9 +31,9 @@ export const ActionButton = styled(Button)`
       transition: all 0.3s cubic-bezier(.25,.8,.25,1);
       background: #ff5b5b;
       color: white;
-      max-width: 100px;
       border-radius: 3px;
-
+      max-height: 40px;
+      flex: 1;
       :hover {
         background: grey;
         color: white;

@@ -20,10 +20,9 @@ export function Board(props) {
     React.useEffect(() => {
         socket.connection().onmessage = (e) => {
             const update = JSON.parse(e.data);
-            console.log(JSON.parse(e.data));
             if (update.gameEvent === "update") {
                 const fill = 6 - update.display.whiteCards.length;
-                setplayed(update.display.whiteCards.concat(new Array(fill).fill({})));
+                setplayed(update.display.whiteCards.concat(new Array(fill).fill({"noDisplay": true})));
 
 
                 setHand(update.hand);
