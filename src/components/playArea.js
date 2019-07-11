@@ -28,12 +28,14 @@ export function PlayArea(props) {
                 <BlackCard>
                     <p>{props.blackCard.body}</p>
                     {props.blackCard.cardId}
+                    {props.blackCard.cardPack}
                 </BlackCard>
                 {props.played.map(card => {
                     return (
                         <WhiteCard show={!(card.noDisplay)}>
                             <p>{card.body}</p>
                             {card.cardId}
+                            {card.cardPack}
                         </WhiteCard>
                     )
                 })}
@@ -49,6 +51,7 @@ export function PlayArea(props) {
                             }}>
                             <p>{card.body}</p>
                             {card.cardId}
+                            {card.cardPack}
                         </WhiteCard>
                     )
                 })}
@@ -70,13 +73,13 @@ const InviteModal = (props) => {
     let handleClose = () => {
         props.set(false);
     };
+
     return (
         <Modal show={props.show}>
             <BoardCard>
-                <h1>Invite Code: {props.code}</h1>
+                <Selectable>Invite Code: {props.code}</Selectable>
                 <ActionButton show onClick={handleClose}>close</ActionButton>
             </BoardCard>
-
         </Modal>
     );
 };
@@ -85,8 +88,15 @@ export const ButtonArea = styled.div`
  justify-content: stretch;
  display: flex;
  flex-direction: row;
- 
 `;
+
+export const Selectable = styled.div`
+  -webkit-user-select: text; /* Safari 3.1+ */
+  -moz-user-select: text; /* Firefox 2+ */
+  -ms-user-select: text; /* IE 10+ */
+  user-select: text; /* Standard syntax */
+`;
+
 export const PlayAreaCard = styled(Card)`
   display: flex;
   flex: 75;
