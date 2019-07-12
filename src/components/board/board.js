@@ -14,6 +14,7 @@ export function Board(props) {
     });
 
     const [hand, setHand] = useState([]);
+    const [isJudge, setIsJudge] = useState(false);
     const [played, setplayed] = useState([]);
     const [blackCard, setBlackCard] = useState({});
 
@@ -23,8 +24,7 @@ export function Board(props) {
             if (update.gameEvent === "update") {
                 const fill = 6 - update.display.whiteCards.length;
                 setplayed(update.display.whiteCards.concat(new Array(fill).fill({"noDisplay": true})));
-
-
+                setIsJudge(update.currentJudge);
                 setHand(update.hand);
                 setBlackCard(update.display.blackCard);
             }
@@ -52,7 +52,7 @@ export function Board(props) {
                 card.key = i;
                 return card
             })} played={played} blackCard={blackCard} start={socket.start} nudge={socket.nudge} submit={socket.submit}
-                      boardId={props.boardId}/>
+                      boardId={props.boardId} canPlay={!isJudge}/>
             <DebugModal setDebug={props.setDebug} socket={socket}/>
         </BoardCard>
     )

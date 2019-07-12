@@ -12,7 +12,7 @@ export function PlayArea(props) {
     };
 
     let handleDrop = (e) => {
-        if (draggedCard)
+        if (draggedCard && props.canPlay)
             props.submit(draggedCard);
         setDraggedCard(null);
         e.preventDefault();
