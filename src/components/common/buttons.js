@@ -9,15 +9,21 @@ export const Button = styled.button`
     border: none;
     -webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;
     cursor: pointer;
+    visibility: ${props => props.show ? 'visible' : 'hidden'}
 `;
 
 export const NavButton = styled(Button)`
-    margin: 0.5em 1em;
+    margin: 20px;
     font-size: 20px;
     background: #ff5b5b;
     color: #3b3e47;
-`
-export const FormButton = styled(Button)`
+    border-radius: 2px;
+    :hover {
+        background: grey;
+        color: white;
+    }
+`;
+export const ActionButton = styled(Button)`
       padding: 10px;
       margin: 10px;
       font-size: 18px;
@@ -25,6 +31,11 @@ export const FormButton = styled(Button)`
       transition: all 0.3s cubic-bezier(.25,.8,.25,1);
       background: #ff5b5b;
       color: white;
-      max-width: 100px;
-`
-
+      border-radius: 3px;
+      max-height: 40px;
+      flex: 1;
+      :hover {
+        background: grey;
+        color: white;
+      }
+`;

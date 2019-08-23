@@ -5,4 +5,7 @@ font-size: 40px;
 min-font-size: 36px;
 max-font-size: 70px;
 color: #ff5b5b;
+@media(max-width: 600px) {
+    display: none;
+}
 `;

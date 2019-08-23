@@ -5,6 +5,7 @@ export const Card = styled.div`
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   border-radius: 5px;
   flex: 1;
+  user-select: none;
 `;
 
 export const LobbyCard = styled(Card)`
@@ -22,28 +23,34 @@ export const LobbyCard = styled(Card)`
 `;
 
 export const BoardCard = styled(Card)`
+  padding: 20px;
   flex: 1;
   background: white;
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100%;
   align-self: stretch;
   justify-self: stretch;
   justify-content: space-between;
-
 `;
 
 export const ScoreCard = styled(Card)`
       flex: 50;
-      flex-grow: 50;
 `;
 export const ChatCard = styled(Card)`
+    flex-direction: column;
     flex: 50;
-    flex-grow: 50;
+    display: flex;
+    justify-content: start;
 `;
-export const PlayAreaCard = styled(Card)`
-  flex: 75;
-  flex-grow: 75;
-
+export const CardHead = styled.h2`
+    padding: 10px;
+    margin: 0;
+    color: #ff5b5b;
+    background: #3b3e47;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    flex: 1;
+    max-height: 30px;
 `;

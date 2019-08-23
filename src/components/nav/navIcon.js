@@ -6,4 +6,4 @@ export const NavIcon = styled.img`
     flex: 0 0 auto;
     min-height: 36px;
     max-height: 70px;
-`
+`;

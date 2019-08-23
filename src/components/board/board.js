@@ -1,46 +1,61 @@
-import React from "react";
+import React, {useState} from "react";
 import {Socket} from "./socket";
-import {BoardCard, ChatCard, PlayAreaCard, ScoreCard} from "../common/card";
+import {BoardCard, CardHead, ScoreCard} from "../common/card";
 import styled from "styled-components";
+import {DebugModal} from "../debug";
+import {Chat} from "../chat";
+import {PlayArea} from "../playArea";
 
-export class Board extends React.Component {
-    constructor(props) {
-        super(props);
-        let socket = new Socket(this.props.url, this.props.boardId, this.props.name);
-        this.state = {
-            socket: socket,
-            connection: socket.connection()
-        };
-    }
+export function Board(props) {
+    // this bit of code for socket is lazy init, which runs once on construction but not rerender
+    let [socket,] = useState(() => {
+        const initialState = new Socket(props.url, props.boardId, props.name);
+        return initialState;
+    });
 
-    componentDidMount() {
+    const [hand, setHand] = useState([]);
+    const [isJudge, setIsJudge] = useState(false);
+    const [played, setplayed] = useState([]);
+    const [blackCard, setBlackCard] = useState({});
+
+    React.useEffect(() => {
+        socket.connection().onmessage = (e) => {
+            const update = JSON.parse(e.data);
+            if (update.gameEvent === "update") {
+                const fill = 6 - update.display.whiteCards.length;
+                setplayed(update.display.whiteCards.concat(new Array(fill).fill({"noDisplay": true})));
+                setIsJudge(update.currentJudge);
+                setHand(update.hand);
+                setBlackCard(update.display.blackCard);
+            }
+        }
+    });
+
+    // attempt to always properly close socket
+    React.useEffect(() => {
         window.addEventListener('beforeunload', () => {
             this.state.socket.leave();
         });
-    }
+    });
 
-    componentWillUnmount() {
-        console.log('huehue');
-        this.state.socket.leave();
-    }
-
-    render() {
-        return (
-            <BoardCard>
-                <ChatScoreDiv>
-                    <ScoreCard>
-
-                    </ScoreCard>
-                    <SpacerDiv/>
-                    <ChatCard>
-
-                    </ChatCard>
-                </ChatScoreDiv>
+    return (
+        <BoardCard>
+            <ChatScoreDiv>
+                <ScoreCard>
+                    <CardHead>Score Board</CardHead>
+                </ScoreCard>
                 <SpacerDiv/>
-                <PlayAreaCard/>
-            </BoardCard>
-        )
-    }
+                <Chat chat={socket.chat} handleChat={socket.handleChat}/>
+            </ChatScoreDiv>
+            <SpacerDiv/>
+            <PlayArea hand={hand.map((card, i) => {
+                card.key = i;
+                return card
+            })} played={played} blackCard={blackCard} start={socket.start} nudge={socket.nudge} submit={socket.submit}
+                      boardId={props.boardId} canPlay={!isJudge}/>
+            <DebugModal setDebug={props.setDebug} socket={socket}/>
+        </BoardCard>
+    )
 }
 
 
@@ -51,12 +66,15 @@ export const ChatScoreDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-`
+`;
 export const SpacerDiv = styled.div`
     max-width: 40px;
     min-width: 20px;
     max-height: 40px;
     min-height: 20px;
     background: transparent;
-    flex: 1; 
-`
+    flex: 1;
+    flex-direction: column;
+    justify-content: stretch; 
+`;
+
